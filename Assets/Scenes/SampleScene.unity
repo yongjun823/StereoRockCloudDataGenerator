@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -281,6 +282,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1ff4e455a106349a3ca5a696582ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 534669904}
+  cameraName: left
 --- !u!1001 &869827220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -359,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a529d52b9aed97e4099a2b9cd637c59e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a529d52b9aed97e4099a2b9cd637c59e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -367,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a529d52b9aed97e4099a2b9cd637c59e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.82
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a529d52b9aed97e4099a2b9cd637c59e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -422,6 +437,7 @@ GameObject:
   - component: {fileID: 1704322116}
   - component: {fileID: 1704322115}
   - component: {fileID: 1704322114}
+  - component: {fileID: 1704322117}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -493,3 +509,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1704322117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704322113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1ff4e455a106349a3ca5a696582ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 1704322115}
+  cameraName: right
