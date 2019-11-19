@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Pcx;
 using System.Linq;
@@ -45,6 +44,11 @@ public class CameraCapture : MonoBehaviour
         if (!dir.Exists)
         {
             Directory.CreateDirectory(path);
+        }
+        
+        if(cnt > 10)
+        {
+            return;
         }
 
         string name = $"{path}/{cnt}_{cameraName}.jpg";
