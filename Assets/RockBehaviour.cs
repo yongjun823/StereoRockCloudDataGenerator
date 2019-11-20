@@ -16,6 +16,6 @@ public class RockBehaviour : MonoBehaviour
     void Update()
     {
         cnt++;
-        transform.rotation = Quaternion.Euler(cnt * 10 + cnt, cnt * 10 + cnt, cnt * 10 + cnt);
+        transform.rotation = Quaternion.Euler(0, cnt * 10 + cnt, 0);
     }
 }
