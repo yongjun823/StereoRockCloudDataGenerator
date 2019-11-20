@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Pcx;
-using System.Linq;
+﻿using UnityEngine;
 using System.IO;
 
 public class CameraCapture : MonoBehaviour
@@ -11,27 +8,14 @@ public class CameraCapture : MonoBehaviour
     public string cameraName = "";
     #endregion
 
-    List<Data.Point> points;
-    string path;
+    string path = "C:/sr";
     int cnt = 0;
     // Start is called before the first frame update
 
     void Start()
     {
-        path = Application.dataPath + "/ScreenShot";
+        //path = Application.dataPath + "/ScreenShot";
         Debug.Log(path);
-
-        var pcr = GameObject.Find("rock22").GetComponent<PointCloudRenderer>();
-        var computeBuffer = pcr.sourceData.computeBuffer;
-        var pointList = new Data.Point[computeBuffer.count];
-        computeBuffer.GetData(pointList);
-
-        var random = new Random();
-
-        points = pointList.ToList()
-            .OrderBy(x => Random.Range(0, pointList.Length))
-            .Take(2048)
-            .ToList();
     }
 
     // Update is called once per frame
@@ -45,9 +29,11 @@ public class CameraCapture : MonoBehaviour
         {
             Directory.CreateDirectory(path);
         }
-        
-        if(cnt > 10)
+
+        Debug.Log($"{cameraName} / {cnt}");
+        if(cnt > 50)
         {
+            Debug.Log("Capture End!");
             return;
         }
 
