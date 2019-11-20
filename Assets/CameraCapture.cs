@@ -8,7 +8,7 @@ public class CameraCapture : MonoBehaviour
     public string cameraName = "";
     #endregion
 
-    string path = "C:/sr";
+    string path = "C:/sr/Rock1";
     int cnt = 0;
     // Start is called before the first frame update
 
@@ -31,7 +31,7 @@ public class CameraCapture : MonoBehaviour
         }
 
         Debug.Log($"{cameraName} / {cnt}");
-        if(cnt > 50)
+        if(cnt > 100)
         {
             Debug.Log("Capture End!");
             return;
