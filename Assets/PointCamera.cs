@@ -11,7 +11,6 @@ public class PointCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         var pcr = GameObject.Find("Rock Cloud").GetComponent<PointCloudRenderer>();
         var computeBuffer = pcr.sourceData.computeBuffer;
         var pointList = new Data.Point[computeBuffer.count];
