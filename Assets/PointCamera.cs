@@ -9,7 +9,7 @@ public class PointCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cnt > 10)
+        if (cnt > 200)
         {
             return;
         }

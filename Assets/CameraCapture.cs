@@ -31,7 +31,7 @@ public class CameraCapture : MonoBehaviour
         }
 
         Debug.Log($"{cameraName} / {cnt}");
-        if(cnt > 100)
+        if(cnt > 200)
         {
             Debug.Log("Capture End!");
             return;
