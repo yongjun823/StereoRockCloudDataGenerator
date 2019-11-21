@@ -9,7 +9,7 @@ public class PointCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cnt > 10)
+        if (cnt > 200)
         {
             return;
         }
@@ -24,7 +24,7 @@ public class PointCamera : MonoBehaviour
              .Take(2048)
              .ToList();
 
-        using (var file = new System.IO.StreamWriter($@"C:\sr\Rock1\{cnt}.txt"))
+        using (var file = new System.IO.StreamWriter($@"C:\sr\Rock1\{cnt:000}.csv"))
         {
             foreach (var point in points)
             {
