@@ -24,7 +24,7 @@ public class PointCamera : MonoBehaviour
              .Take(2048)
              .ToList();
 
-        using (var file = new System.IO.StreamWriter($@"C:\sr\Rock4\{cnt:000}.csv"))
+        using (var file = new System.IO.StreamWriter($@"C:\sr\Rock5\{cnt:000}.csv"))
         {
             foreach (var point in points)
             {
