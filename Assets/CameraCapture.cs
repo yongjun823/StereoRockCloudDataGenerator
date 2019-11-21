@@ -8,7 +8,7 @@ public class CameraCapture : MonoBehaviour
     public string cameraName = "";
     #endregion
 
-    string path = "C:/sr/Rock2";
+    string path = "C:/sr/Rock1";
     int cnt = 0;
     // Start is called before the first frame update
 

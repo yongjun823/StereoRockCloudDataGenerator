@@ -1,0 +1,10 @@
+diff a/Assets/CameraCapture.cs b/Assets/CameraCapture.cs	(rejected hunks)
+@@ -8,7 +8,7 @@
+     public string cameraName = "";
+     #endregion
+ 
+-    string path = "C:/sr/Rock1";
++    string path = "C:/sr/Rock2";
+     int cnt = 0;
+     // Start is called before the first frame update
+ 

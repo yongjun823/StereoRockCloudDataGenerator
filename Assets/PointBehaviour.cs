@@ -13,6 +13,6 @@ public class PointBehaviour : MonoBehaviour
     void Update()
     {
         cnt++;
-        transform.rotation = Quaternion.Euler(0, cnt * 10 + cnt, 0);
+        transform.rotation = Quaternion.Euler(cnt * 10 + cnt, cnt * 10 + cnt, cnt * 10 + cnt);
     }
 }
