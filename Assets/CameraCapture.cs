@@ -37,7 +37,7 @@ public class CameraCapture : MonoBehaviour
             return;
         }
 
-        string name = $"{path}/{cnt}_{cameraName}.jpg";
+        string name = $"{path}/{cnt:000}_{cameraName}.jpg";
         cnt++;
         
         RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
