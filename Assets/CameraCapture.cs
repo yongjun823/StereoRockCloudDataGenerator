@@ -8,15 +8,14 @@ public class CameraCapture : MonoBehaviour
     public string cameraName = "";
     #endregion
 
-    string path = "C:/sr/Rock5";
+    string path = "C:/sr/Rock4";
 
     int cnt = 0;
     // Start is called before the first frame update
 
     void Start()
     {
-        //path = Application.dataPath + "/ScreenShot";
-        Debug.Log(path);
+        Debug.Log("Save path: " + path);
     }
 
     // Update is called once per frame
@@ -31,8 +30,7 @@ public class CameraCapture : MonoBehaviour
             Directory.CreateDirectory(path);
         }
 
-        Debug.Log($"{cameraName} / {cnt}");
-        if(cnt > 200)
+        if (cnt > 120)
         {
             Debug.Log("Capture End!");
             return;
@@ -40,7 +38,7 @@ public class CameraCapture : MonoBehaviour
 
         string name = $"{path}/{cnt:000}_{cameraName}.jpg";
         cnt++;
-        
+
         RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
         camera.targetTexture = rt;
         Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);

@@ -9,4 +9,6 @@ public static class Data
         public Vector3 position;
         public uint color;
     }
+
+    public static int cnt = 0;
 }
