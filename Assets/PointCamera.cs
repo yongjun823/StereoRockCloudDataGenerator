@@ -14,6 +14,7 @@ public class PointCamera : MonoBehaviour
     void Update()
     {
         var angle = -transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
+
         //Debug.Log($"{cnt}, {angle / Mathf.Deg2Rad}");
         if (cnt > 120)
         {
@@ -26,22 +27,13 @@ public class PointCamera : MonoBehaviour
         var pointList = new Data.Point[computeBuffer.count];
         computeBuffer.GetData(pointList);
 
+        var TransformsMatrix = GetTransformationMatrix(transform.rotation, transform.position);
+
         var points = pointList.ToList()
              //.OrderBy(x => Random.Range(0, pointList.Length))
              .Take(2048)
+             .Select(point => CameraTransformation(point.position, TransformsMatrix))
              .ToList();
-
-        var tranformsMatrix = GetTransformationMatrix(transform.rotation, transform.position);
-
-        var TP = points[0].position;
-        var dd = new double[3] { TP.x, TP.y, TP.z };
-
-        var tvec = DenseVector.FromArray(dd);
-
-        var kk = tranformsMatrix * tvec;
-
-        Debug.Log(kk);
-
 
         //using (var file = new System.IO.StreamWriter($@"C:\sr\{RockName}\{cnt:000}.csv"))
         //{
@@ -52,6 +44,20 @@ public class PointCamera : MonoBehaviour
         //}
 
         cnt++;
+    }
+
+    Vector3 CameraTransformation(Vector3 point, Matrix tranformsMatrix)
+    {
+        var PositionVector = new Matrix(new double[4, 1] {
+            { point.x }, { point.y }, { point.z }, { 1.0 } });
+
+        var TransPosition = tranformsMatrix * PositionVector;
+        var TransVector = new Vector3(
+            x: (float)TransPosition[0],
+            y: (float)TransPosition[1],
+            z: (float)TransPosition[2]);
+
+        return TransVector;
     }
 
     Matrix GetTransformationMatrix(Quaternion rotate, Vector3 translate)
@@ -86,6 +92,6 @@ public class PointCamera : MonoBehaviour
             {0.0, 0.0, 0.0, 1.0 }
         });
 
-        return fRotationMatrix;
+        return fTransformationMatrix;
     }
 }
