@@ -6,47 +6,48 @@ using System.Collections.Generic;
 
 public class PointCamera : MonoBehaviour
 {
+    private const string Value = "cnt,x,y,z,rx,ry,rz";
     #region Editable attributes
     public string RockName = "";
     #endregion
+
     int cnt = 0;
+    Data.Point[] pointList;
 
     void Start()
     { 
         using (var file = new System.IO.StreamWriter($"C:\\sr\\{RockName}.csv"))
         {
-            file.WriteLine($"cnt,x, y, z, rx, ry, rz");
+            file.WriteLine(Value);
         }
+
+        var pcr = GameObject.Find("Rock Cloud").GetComponent<PointCloudRenderer>();
+        var computeBuffer = pcr.sourceData.computeBuffer;
+        pointList = new Data.Point[computeBuffer.count];
+        computeBuffer.GetData(pointList);
     }
 
     // Update is called once per frame
+    
+
     void Update()
     {
-        var angle = -transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
-
-        //Debug.Log($"{cnt}, {angle / Mathf.Deg2Rad}");
-        if (cnt > 120)
+        if(cnt > 10000)
         {
             return;
         }
 
-        var pcr = GameObject.Find("Rock Cloud").GetComponent<PointCloudRenderer>();
-
-        var computeBuffer = pcr.sourceData.computeBuffer;
-        var pointList = new Data.Point[computeBuffer.count];
-        computeBuffer.GetData(pointList);
-
         var TransformsMatrix = GetTransformationMatrix(transform.rotation, transform.position);
 
         var points = pointList.ToList()
-             //.OrderBy(x => Random.Range(0, pointList.Length))
+             .OrderBy(x => Random.Range(0, pointList.Length))
              .Take(2048)
              .Select(point => CameraTransformation(point.position, TransformsMatrix))
              .ToList();
 
         WritePointData(points, cnt);
         WritePointInfo(transform.rotation, transform.position, cnt);
-        
+
         cnt++;
     }
 
