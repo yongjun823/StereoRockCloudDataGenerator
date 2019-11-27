@@ -4,10 +4,11 @@ using System.IO;
 public class CameraCapture : MonoBehaviour
 {
     #region Editable attributes
-    public Camera camera = null;
+
     public string cameraName = "";
     #endregion
 
+    private Camera camera = null;
     string path = "C:/sr/Rock4";
 
     int cnt = 0;
@@ -16,6 +17,7 @@ public class CameraCapture : MonoBehaviour
     void Start()
     {
         Debug.Log("Save path: " + path);
+        camera = GameObject.Find($"{cameraName} Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class CameraCapture : MonoBehaviour
             Directory.CreateDirectory(path);
         }
 
-        if (cnt > 120)
+        if (cnt > 10000)
         {
             Debug.Log("Capture End!");
             return;
@@ -46,6 +48,11 @@ public class CameraCapture : MonoBehaviour
         RenderTexture.active = rt;
         screenShot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
         screenShot.Apply();
+
+        camera.targetTexture = null;
+        RenderTexture.active = null;
+        Destroy(rt);
+        Resources.UnloadUnusedAssets();
 
         byte[] bytes = screenShot.EncodeToJPG();
         File.WriteAllBytes(name, bytes);
