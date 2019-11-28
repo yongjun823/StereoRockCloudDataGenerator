@@ -28,8 +28,6 @@ public class PointCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    
-
     void Update()
     {
         if(cnt > 10000)
@@ -53,9 +51,11 @@ public class PointCamera : MonoBehaviour
 
     void WritePointInfo(Quaternion rotate, Vector3 translate, int cnt)
     {
+        var euler = rotate.eulerAngles;
+
         using (var file = new System.IO.StreamWriter($"C:\\sr\\{RockName}.csv", true))
         {
-            file.WriteLine($"{cnt},{translate.x},{translate.y},{translate.z},{rotate.x},{rotate.y},{rotate.z}");
+            file.WriteLine($"{cnt},{translate.x},{translate.y},{translate.z},{euler.x},{euler.y},{euler.z}");
         }
     }
 
@@ -87,9 +87,9 @@ public class PointCamera : MonoBehaviour
     Matrix GetTransformationMatrix(Quaternion rotate, Vector3 translate)
     {
         var tRotation = new Vector3(
-            x: rotate.x * Mathf.Deg2Rad,
-            y: rotate.y * Mathf.Deg2Rad,
-            z: rotate.z * Mathf.Deg2Rad);
+            x: rotate.eulerAngles.x * Mathf.Deg2Rad,
+            y: rotate.eulerAngles.y * Mathf.Deg2Rad,
+            z: rotate.eulerAngles.z * Mathf.Deg2Rad);
 
         var fXRotationMatrix = new Matrix(new double[3, 3]
             { { 1.0, 0.0, 0.0 },
