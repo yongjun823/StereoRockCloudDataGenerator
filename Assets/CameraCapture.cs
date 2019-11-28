@@ -9,13 +9,19 @@ public class CameraCapture : MonoBehaviour
     #endregion
 
     private Camera camera = null;
-    string path = "C:/sr/Rock4";
+    string path = "C:/sr/Rock1";
 
     int cnt = 0;
     // Start is called before the first frame update
 
     void Start()
     {
+        DirectoryInfo dir = new DirectoryInfo(path);
+        if (!dir.Exists)
+        {
+            Directory.CreateDirectory(path);
+        }
+
         Debug.Log("Save path: " + path);
         camera = GameObject.Find($"{cameraName} Camera").GetComponent<Camera>();
     }
@@ -23,20 +29,14 @@ public class CameraCapture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var resWidth = Screen.width;
-        var resHeight = Screen.height;
-
-        DirectoryInfo dir = new DirectoryInfo(path);
-        if (!dir.Exists)
-        {
-            Directory.CreateDirectory(path);
-        }
-
         if (cnt > 10000)
         {
             Debug.Log("Capture End!");
             return;
         }
+
+        var resWidth = Screen.width;
+        var resHeight = Screen.height;
 
         string name = $"{path}/{cnt:000}_{cameraName}.jpg";
         cnt++;
